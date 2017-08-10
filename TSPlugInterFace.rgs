@@ -1,0 +1,20 @@
+HKCR
+{
+	Ts.TsSoft = s 'TSPlugInterFace Class'
+	{
+		CLSID = s '{BCE4A484-C3BC-418B-B1F6-69D6987C126B}'
+		CurVer = s 'Ts.TsSoft'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {BCE4A484-C3BC-418B-B1F6-69D6987C126B} = s 'TSPlugInterFace Class'
+		{
+			ProgID = s 'Ts.TsSoft'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			
+		}
+	}
+}

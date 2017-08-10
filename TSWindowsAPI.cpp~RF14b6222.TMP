@@ -1,0 +1,321 @@
+#include "StdAfx.h"
+#include "TSWindowsAPI.h"
+#include "TSMyUser32DllFuntion.h"
+#include "TSMyKernel32DllFuntion.h"
+#include "TSRuntime.h"
+
+TSWindowsAPI::TSWindowsAPI(void)
+	{
+	if(TSRuntime::InitialWindowsVersion()!=4)//不是win7系统
+		{
+			TSRuntime::IsInitialmyUser32module=InitialMyUser32Dll();
+			TSRuntime::IsInitialmykernel32module=InitialMykernel32Dll();
+			//if(TSRuntime::IsInitialmyUser32module==false||TSRuntime::IsInitialmykernel32module==false)
+			//  ::MessageBox(0,L"InitialMyUser32Dll失败",L"TS",0);
+			//else
+			//   ::MessageBox(0,L"InitialMyUser32Dll成功",L"TS",0);
+		}
+	}
+
+TSWindowsAPI::~TSWindowsAPI(void)
+	{
+	}
+
+//TSEnumWindow:filter整形数: 取值定义如下
+//
+//1 : 匹配窗口标题,参数title有效 
+//
+//2 : 匹配窗口类名,参数class_name有效.
+//
+//4 : 只匹配指定父窗口的第一层孩子窗口
+//
+//8 : 匹配所有者窗口为0的窗口,即顶级窗口
+//
+//16 : 匹配可见的窗口
+//
+//32 : 匹配出的窗口按照窗口打开顺序依次排列
+bool TSWindowsAPI::TSEnumWindow(HWND parent,wchar_t *title,wchar_t *class_name,LONG filter,wchar_t *retstring)
+	{
+	   bool bret=false;
+	   bool bZwindow=false;//匹配出的窗口按照窗口打开顺序依次排列
+	   if(parent==0)
+		   {
+			  parent=GetDesktopWindow();
+		   }
+	   if(filter>32)
+		   {
+			  bZwindow=true;//说明要排序窗口句柄
+			  filter=filter-32;
+		   }
+	   switch(filter)
+		   {
+		   case 1://1 : 匹配窗口标题,参数title有效  
+			   {
+			   if(wcslen(title)<1)
+				   return false;
+			   HWND p=::GetWindow(parent,GW_CHILD); //获取桌面窗口的子窗口
+			   if(p==NULL)
+				   return false;
+			   p=::GetWindow(p,GW_HWNDFIRST);
+			   while(p!=NULL)
+				   {
+				   wchar_t WindowTitle[MAX_PATH] = {0};
+				   ::GetWindowText(p, WindowTitle, MAX_PATH);
+				   if(wcslen(WindowTitle)>1)
+					   {
+						wchar_t *strfind=wcsstr(WindowTitle,title);   //模糊匹配
+							if(strfind)
+								{
+									int len=wcslen(retstring);
+									if(len>1)
+										swprintf(retstring,L",%x" ,p);
+									else
+										swprintf(retstring,L"%x",p);
+								}
+					   }
+					   p=::GetWindow(p,GW_HWNDNEXT);   //获取下一个窗口
+				   }
+				 break;
+			   }
+		   case 2://2 : 匹配窗口类名,参数class_name有效.
+			   {
+			   if(wcslen(class_name)<1)
+				   return false;
+			   HWND p=::GetWindow(parent,GW_CHILD); //获取桌面窗口的子窗口
+			   if(p==NULL)
+				   return false;
+			   p=::GetWindow(p,GW_HWNDFIRST);
+			   while(p!=NULL)
+				   {
+					   wchar_t WindowClassName[MAX_PATH] = {0};
+					   ::GetClassName(p, WindowClassName, MAX_PATH);
+					   if(wcslen(WindowClassName)>1)
+						   {
+						   wchar_t *strfind=wcsstr(WindowClassName,class_name);   //模糊匹配
+						   if(strfind)
+							   {
+							   int len=wcslen(retstring);
+							   if(len>1)
+								   swprintf(retstring,L",%x" ,p);
+							   else
+								   swprintf(retstring,L"%x",p);
+							   }
+						   }
+					   p=::GetWindow(p,GW_HWNDNEXT);   //获取下一个窗口
+				   }
+				break;
+			   }
+		   case 3:   //1.窗口标题+2.窗口类名
+			   {
+			   if(wcslen(class_name)<1&&wcslen(title)<1)
+				   return false;
+			   HWND p=::GetWindow(parent,GW_CHILD); //获取桌面窗口的子窗口
+			   if(p==NULL)
+				   return false;
+			   p=::GetWindow(p,GW_HWNDFIRST);
+			   while(p!=NULL)
+				   {
+				   wchar_t WindowClassName[MAX_PATH] = {0};
+				   ::GetClassName(p, WindowClassName, MAX_PATH);
+				   wchar_t WindowTitle[MAX_PATH] = {0};
+				   ::GetWindowText(p, WindowTitle, MAX_PATH);
+				   if(wcslen(WindowClassName)>1&&wcslen(WindowTitle)>1)
+					   {
+					   wchar_t *strfindclass=wcsstr(WindowClassName,class_name);   //模糊匹配
+					   wchar_t *strfindtitle=wcsstr(WindowTitle,title);   //模糊匹配
+					   if(strfindclass&&strfindtitle)
+						   {
+						   int len=wcslen(retstring);
+						   if(len>1)
+							   swprintf(retstring,L",%x" ,p);
+						   else
+							   swprintf(retstring,L"%x",p);
+						   }
+					   }
+				   p=::GetWindow(p,GW_HWNDNEXT);   //获取下一个窗口
+				   }
+				break;
+			   }
+		   case 4:	  //4 : 只匹配指定父窗口的第一层孩子窗口
+			   {
+				 HWND hchild=::GetWindow(parent,GW_CHILD); //获取桌面窗口的子窗口
+				 if(hchild!=NULL)
+					swprintf(retstring,L"%x",hchild);
+				 break;
+			   }
+		   case 5:	  //1.匹配窗口标题+//4 : 只匹配指定父窗口的第一层孩子窗口
+			   {
+			   if(wcslen(title)<1)
+				   return false;
+			   HWND hchild=::GetWindow(parent,GW_CHILD); //获取桌面窗口的子窗口
+			   if(hchild==NULL)
+				   return false;
+			   wchar_t WindowTitle[MAX_PATH] = {0};
+			   ::GetWindowText(hchild, WindowTitle, MAX_PATH);
+			   if(wcslen(WindowTitle)>1)
+				   {
+						if(wcsstr(WindowTitle,title))
+						   swprintf(retstring,L"%x",hchild);
+				   }
+			   else
+				    return false;
+			   break;
+			   }
+		   case 6:	 //2 : 匹配窗口类名+4 : 只匹配指定父窗口的第一层孩子窗口
+			   {
+			   if(wcslen(class_name)<1)
+				   return false;
+			   HWND hchild=::GetWindow(parent,GW_CHILD); //获取桌面窗口的子窗口
+			   if(hchild==NULL)
+				   return false;
+			   wchar_t WindowClassName[MAX_PATH] = {0};
+			   ::GetClassName(hchild, WindowClassName, MAX_PATH);
+			   if(wcslen(WindowClassName)>1)
+				   {
+				   if(wcsstr(WindowClassName,class_name))
+					   swprintf(retstring,L"%x",hchild);
+				   }
+			   break;
+			   }
+		   case 7:	 //1.窗口标题+2.窗口类名+4 : 只匹配指定父窗口的第一层孩子窗口
+			   {
+			   if(wcslen(class_name)<1&&wcslen(title)<1)
+				   return false;
+			   HWND hchild=::GetWindow(parent,GW_CHILD); //获取桌面窗口的子窗口
+			   if(hchild==NULL)
+				   return false;
+			   wchar_t WindowClassName[MAX_PATH] = {0};
+			   ::GetClassName(hchild, WindowClassName, MAX_PATH);
+			   wchar_t WindowTitle[MAX_PATH] = {0};
+			   ::GetWindowText(hchild, WindowTitle, MAX_PATH);
+			   if(wcslen(WindowClassName)>1&&wcslen(WindowTitle)>1)
+				   {
+				   wchar_t *strfindclass=wcsstr(WindowClassName,class_name);   //模糊匹配
+				   wchar_t *strfindtitle=wcsstr(WindowTitle,title);   //模糊匹配
+				   if(strfindclass&&strfindtitle)
+					   {
+						   swprintf(retstring,L"%x",hchild);
+					   }
+				   }
+			   break;
+			   }
+		   case 8:	//8 : 匹配所有者窗口为0的窗口,即顶级窗口
+			   {
+				   parent=GetDesktopWindow();
+				   HWND p=::GetWindow(parent,GW_CHILD); //获取桌面窗口的子窗口
+				   p=::GetWindow(p,GW_HWNDFIRST);
+				   while(p!=NULL)
+					   {
+						   if(::GetWindow( p, GW_OWNER ) == 0 )
+							   {
+								   int len=wcslen(retstring);
+								   if(len>1)
+									   swprintf(retstring,L",%x" ,p);
+								   else
+									   swprintf(retstring,L"%x",p);
+							   }
+						   p=::GetWindow(p,GW_HWNDNEXT);   //获取下一个窗口
+					   }
+			   break;
+			   }
+		   case 9:	  //1.窗口标题+8 : 匹配所有者窗口为0的窗口,即顶级窗口
+			   {
+			   break;
+			   }
+		   case 10:	//2.窗口类名+8 : 匹配所有者窗口为0的窗口,即顶级窗口
+			   {
+			   break;
+			   }
+		   case 11:	 ////1.窗口标题+2.窗口类名+8 : 匹配所有者窗口为0的窗口,即顶级窗口
+			   {
+			   break;
+			   }
+		   case 12:	// //4 : 只匹配指定父窗口的第一层孩子窗口+8 : 匹配所有者窗口为0的窗口,即顶级窗口
+			   {
+			   break;
+			   }
+		   case 13:	 //1.窗口标题+4 : 只匹配指定父窗口的第一层孩子窗口+8 : 匹配所有者窗口为0的窗口,即顶级窗口
+			   {
+			   break;
+			   }
+		   case 14:	  //2.窗口类名+4 : 只匹配指定父窗口的第一层孩子窗口+8 : 匹配所有者窗口为0的窗口,即顶级窗口
+			   {
+			   break;
+			   }
+		   case 15:	 ////1.窗口标题+2.窗口类名+4 : 只匹配指定父窗口的第一层孩子窗口+8 : 匹配所有者窗口为0的窗口,即顶级窗口
+			   {
+			   break;
+			   }
+		   case 16://匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 17:	//1.窗口标题+//匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 18:	 //2.窗口类名+//匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 19:	////1.窗口标题+2.窗口类名+匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 20:	//4 : 只匹配指定父窗口的第一层孩子窗口+匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 21:	//1.窗口标题+4 : 只匹配指定父窗口的第一层孩子窗口+匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 22://2.窗口类名+4 : 只匹配指定父窗口的第一层孩子窗口+匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 23://1.窗口标题+2.窗口类名+4 : 只匹配指定父窗口的第一层孩子窗口+匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 24://8 : 匹配所有者窗口为0的窗口,即顶级窗口+16.匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 25:	//1.窗口标题+  8:匹配所有者窗口为0的窗口,即顶级窗口+16.匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 26://2.窗口类名+  8:匹配所有者窗口为0的窗口,即顶级窗口+16.匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 27://1.窗口标题+2.窗口类名+8:匹配所有者窗口为0的窗口,即顶级窗口+16.匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 28:	//4 : 只匹配指定父窗口的第一层孩子窗口+8:匹配所有者窗口为0的窗口,即顶级窗口+16.匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 29:	////1.窗口标题+4 : 只匹配指定父窗口的第一层孩子窗口+8:匹配所有者窗口为0的窗口,即顶级窗口+16.匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 30://2.窗口类名+4 : 只匹配指定父窗口的第一层孩子窗口+8:匹配所有者窗口为0的窗口,即顶级窗口+16.匹配可见的窗口
+			   {
+			   break;
+			   }
+		   case 31:	//1.窗口标题+2.窗口类名+4 : 只匹配指定父窗口的第一层孩子窗口+8:匹配所有者窗口为0的窗口,即顶级窗口+16.匹配可见的窗口
+			   {
+			   break;
+			   }
+		   default:
+			   return bret;
+
+		   }
+
+
+	   
+	   return bret;
+	}

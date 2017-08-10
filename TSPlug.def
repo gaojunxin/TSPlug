@@ -1,0 +1,11 @@
+; TSPlug.def : 定义模块参数。
+
+LIBRARY      "TSPlug.DLL"
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE
+	CBFunA	         	PRIVATE
+	CBFunB              PRIVATE

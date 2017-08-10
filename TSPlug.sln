@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TSPlug", "TSPlug.vcxproj", "{0762D45C-EC2D-45A8-B44E-557D0D4326F4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TSPlugPS", "TSPlugPS.vcxproj", "{F7CCD322-F28F-4A26-B9B7-EF2C64919DA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0762D45C-EC2D-45A8-B44E-557D0D4326F4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0762D45C-EC2D-45A8-B44E-557D0D4326F4}.Debug|Win32.Build.0 = Debug|Win32
+		{0762D45C-EC2D-45A8-B44E-557D0D4326F4}.Release|Win32.ActiveCfg = Release|Win32
+		{0762D45C-EC2D-45A8-B44E-557D0D4326F4}.Release|Win32.Build.0 = Release|Win32
+		{F7CCD322-F28F-4A26-B9B7-EF2C64919DA6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F7CCD322-F28F-4A26-B9B7-EF2C64919DA6}.Debug|Win32.Build.0 = Debug|Win32
+		{F7CCD322-F28F-4A26-B9B7-EF2C64919DA6}.Release|Win32.ActiveCfg = Release|Win32
+		{F7CCD322-F28F-4A26-B9B7-EF2C64919DA6}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

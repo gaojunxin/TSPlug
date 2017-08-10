@@ -1,0 +1,194 @@
+// TSPlug.idl : TSPlug 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(TSPlug.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(F3E95C10-606A-474E-BB4A-B9CCBF7DB559),
+	dual,
+	nonextensible,
+	helpstring("ITSPlugInterFace 接口"),
+	pointer_default(unique)
+]
+interface ITSPlugInterFace : IDispatch{
+	[id(1), helpstring("方法BindWindow")] HRESULT BindWindow([in] LONG hwnd, [in] BSTR display, [in] BSTR mouse, [in] BSTR keypad, [in] LONG mode, [out,retval] LONG* nret);
+	[id(2), helpstring("方法BindWindowEx")] HRESULT BindWindowEx([in] LONG hwnd, [in] BSTR display, [in] BSTR mouse, [in] BSTR keypad, [in] BSTR publics, [in] LONG mode, [out,retval] LONG* nret);
+	[id(3), helpstring("方法UnBindWindow")] HRESULT UnBindWindow([out,retval] LONG* nret);
+	[id(4), helpstring("方法KeyDown")] HRESULT KeyDown([in] LONG vk_code, [out,retval] LONG* nret);
+	[id(5), helpstring("方法KeyUp")] HRESULT KeyUp([in] LONG vk_code, [out,retval] LONG* nret);
+	[id(6), helpstring("方法KeyPress")] HRESULT KeyPress([in] LONG vk_code, [out,retval] LONG* nret);
+	[id(7), helpstring("方法LeftDown")] HRESULT LeftDown([out,retval] LONG* nret);
+	[id(8), helpstring("方法LeftUp")] HRESULT LeftUp([out,retval] LONG* nret);
+	[id(9), helpstring("方法LeftClick")] HRESULT LeftClick([out,retval] LONG* nret);
+	[id(10), helpstring("方法MoveTo")] HRESULT MoveTo([in] LONG x, [in] LONG y, [out,retval] LONG* nret);
+	[id(11), helpstring("方法FindPic")] HRESULT FindPic([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR pic_name, [in] BSTR delta_color, [in] DOUBLE sim, [in] LONG dir, [out]VARIANT* intX, [out] VARIANT* intY, [out,retval] LONG* nret);
+	[id(12), helpstring("方法RightClick")] HRESULT RightClick([out,retval] LONG* nret);
+	[id(13), helpstring("方法RightDown")] HRESULT RightDown([out,retval] LONG* nret);
+	[id(16), helpstring("方法FindColor")] HRESULT FindColor([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR color, [in] DOUBLE sim, [in] LONG dir, [out] VARIANT* intX, [out] VARIANT* intY, [out,retval] LONG* nret);
+	[id(17), helpstring("方法RightUp")] HRESULT RightUp([out,retval] LONG* nret);
+	[id(18), helpstring("方法GetColor")] HRESULT GetColor([in] LONG x, [in] LONG y, [out,retval] BSTR* RetStrColor);
+	[id(19), helpstring("方法GetCursorShape")] HRESULT GetCursorShape([out,retval] BSTR* RetCursorShape);
+	[id(20), helpstring("方法SetPath")] HRESULT SetPath([in] BSTR path, [out,retval] LONG* nret);
+	[id(21), helpstring("方法TSGuardProtect")] HRESULT TSGuardProtect([in] LONG enable, [in] BSTR type,[out,retval] LONG* nret);
+	[id(22), helpstring("方法KeyPressStr")] HRESULT KeyPressStr([in] BSTR key_str, [in] LONG delay, [out,retval] LONG* nret);
+	[id(23), helpstring("方法SendString")] HRESULT SendString([in] LONG hwnd, [in] BSTR str, [out,retval] LONG* nret);
+	[id(24), helpstring("方法SendString2")] HRESULT SendString2([in] LONG hwnd, [in] BSTR str, [out,retval] LONG* nret);
+	[id(25), helpstring("方法KeyPressChar")] HRESULT KeyPressChar([in] BSTR key_str, [out,retval] LONG* nret);
+	[id(26), helpstring("方法KeyDownChar")] HRESULT KeyDownChar([in] BSTR key_str, [out,retval] LONG* nret);
+	[id(27), helpstring("方法KeyUpChar")] HRESULT KeyUpChar([in] BSTR key_str, [out,retval] LONG* nret);
+	[id(28), helpstring("方法GetCursorPos")] HRESULT GetCursorPos([out] VARIANT* x, [out] VARIANT* y, [out,retval] LONG* nret);
+	[id(29), helpstring("方法MoveR")] HRESULT MoveR([in] LONG rx, [in] LONG ry, [out,retval] LONG* rnet);
+	[id(30), helpstring("方法Ver")] HRESULT Ver([out,retval] BSTR* retver);
+	[id(31), helpstring("方法GetPath")] HRESULT GetPath([out,retval] BSTR* retpath);
+	[id(32), helpstring("方法MiddleClick")] HRESULT MiddleClick([out,retval] LONG* nret);
+	[id(33), helpstring("方法WheelDown")] HRESULT WheelDown([out,retval] LONG* nret);
+	[id(34), helpstring("方法WheelUp")] HRESULT WheelUp([out,retval] LONG* nret);
+	[id(35), helpstring("方法Capture")] HRESULT Capture([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR file, [out,retval] LONG* nret);
+	[id(36), helpstring("方法CaptureJpg")] HRESULT CaptureJpg([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2,[in] BSTR file, [out,retval] LONG* nret);
+	[id(37), helpstring("方法CapturePng")] HRESULT CapturePng([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR file, [out,retval] LONG* nret);
+	[id(38), helpstring("方法LockInput")] HRESULT LockInput([in] LONG lock, [out,retval] LONG* nret);
+	[id(39), helpstring("方法Ocr")] HRESULT Ocr([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR color_format, [in] FLOAT sim, [out,retval] BSTR* retstr);
+	[id(40), helpstring("方法SetDict")] HRESULT SetDict([in] LONG index, [in] BSTR file, [out,retval] LONG* nret);
+	[id(41), helpstring("方法UseDict")] HRESULT UseDict([in] LONG index, [out,retval] LONG* nret);
+	[id(42), helpstring("方法ClearDict")] HRESULT ClearDict([in] LONG index, [out,retval] LONG* nret);
+	[id(43), helpstring("方法FindStr")] HRESULT FindStr([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR string, [in] BSTR color_format, [in] FLOAT sim, [out] VARIANT* intX, [out] VARIANT* intY, [out,retval] LONG* nret);
+	[id(44), helpstring("方法FindStrFast")] HRESULT FindStrFast([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR string, [in] BSTR color_format, [in] FLOAT sim, [out] VARIANT* intX, [out] VARIANT* intY, [out,retval] LONG* nret);
+	[id(45), helpstring("方法GetNowDict")] HRESULT GetNowDict([out,retval] LONG* nret);
+	[id(46), helpstring("方法GetBasePath")] HRESULT GetBasePath([out,retval] BSTR* retpath);
+	[id(47), helpstring("方法IsDisplayDead")] HRESULT IsDisplayDead([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] LONG t, [out,retval] LONG* bret);
+	[id(48), helpstring("方法FindPicEx")] HRESULT FindPicEx([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR pic_name, [in] BSTR delta_color, [in] DOUBLE sim, [in] LONG dir, [out,retval] BSTR* retstring);
+	[id(49), helpstring("方法FindStrEx")] HRESULT FindStrEx([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR string, [in] BSTR color_format, [in] DOUBLE sim, [out,retval] BSTR* retstring);
+	[id(50), helpstring("方法FindStrFastEx")] HRESULT FindStrFastEx([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR string, [in] BSTR color_format, [in] DOUBLE sim, [out,retval] BSTR* retstring);
+	[id(51), helpstring("方法CaptureGif")] HRESULT CaptureGif([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR file, [in] LONG delay, [in] LONG time, [out,retval] LONG* nret);
+	[id(52), helpstring("方法DownCpu")] HRESULT DownCpu([in] LONG rate, [out,retval] LONG* nret);
+	[id(53), helpstring("方法SetKeypadDelay")] HRESULT SetKeypadDelay([in] BSTR type, [in] LONG delay, [out,retval] LONG* nret);
+	[id(54), helpstring("方法SetMouseDelay")] HRESULT SetMouseDelay([in] BSTR type, [in] LONG delay, [out,retval] LONG* nret);
+	[id(55), helpstring("方法CmpColor")] HRESULT CmpColor([in] LONG x, [in] LONG y, [in] BSTR color, [in] DOUBLE sim, [out,retval] LONG* nret);
+	[id(56), helpstring("方法SendStringIme")] HRESULT SendStringIme([in] BSTR str, [out,retval] LONG* nret);
+	[id(57), helpstring("方法FindColorEx")] HRESULT FindColorEx([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR color, [in] DOUBLE sim, [in] LONG dir, [out,retval] BSTR* retstring);
+	[id(58), helpstring("方法EnumWindow")] HRESULT EnumWindow([in] LONG parent, [in] BSTR title, [in] BSTR class_name, [in] LONG filter, [out,retval] BSTR* retstr);
+	[id(59), helpstring("方法EnumWindowByProcess")] HRESULT EnumWindowByProcess([in] BSTR process_name, [in] BSTR title, [in] BSTR class_name, [in] LONG filter, [out,retval] BSTR* retstring);
+	[id(60), helpstring("方法EnumProcess")] HRESULT EnumProcess([in] BSTR name, [out,retval] BSTR* retstring);
+	[id(61), helpstring("方法ClientToScreen")] HRESULT ClientToScreen([in] LONG ClientToScreen, [in,out] VARIANT* x, [in,out] VARIANT* y, [out,retval] LONG* bret);
+	[id(62), helpstring("方法FindWindow")] HRESULT FindWindow([in] BSTR class_name,[in] BSTR title, [out,retval] LONG* rethwnd);
+	[id(63), helpstring("方法FindWindowByProcess")] HRESULT FindWindowByProcess([in] BSTR process_name, [in] BSTR class_name, [in] BSTR title, [out,retval] LONG* rethwnd);
+	[id(64), helpstring("方法FindWindowByProcessId")] HRESULT FindWindowByProcessId([in] LONG process_id, [in] BSTR class_name, [in] BSTR title, [out,retval] LONG* rethwnd);
+	[id(65), helpstring("方法FindWindowEx")] HRESULT FindWindowEx([in] LONG parent,[in] BSTR class_name,[in] BSTR title, [out,retval] LONG* rethwnd);
+	[id(66), helpstring("方法GetClientRect")] HRESULT GetClientRect([in] LONG hwnd, [out] VARIANT* x1, [out] VARIANT* y1, [out] VARIANT* x2, [out] VARIANT* y2, [out,retval] LONG* nret);
+	[id(67), helpstring("方法GetClientSize")] HRESULT GetClientSize([in] LONG hwnd, [out] VARIANT* width, [out] VARIANT* height, [out,retval] LONG* nret);
+	[id(68), helpstring("方法GetForegroundFocus")] HRESULT GetForegroundFocus([out,retval] LONG* rethwnd);
+	[id(69), helpstring("方法GetForegroundWindow")] HRESULT GetForegroundWindow([out,retval] LONG* rethwnd);
+	[id(70), helpstring("方法GetMousePointWindow")] HRESULT GetMousePointWindow([out,retval] LONG* rethwnd);
+	[id(71), helpstring("方法GetPointWindow")] HRESULT GetPointWindow([in] LONG x, [in] LONG y, [out,retval] LONG* rethwnd);
+	[id(72), helpstring("方法GetProcessInfo")] HRESULT GetProcessInfo([in] LONG pid, [out,retval] BSTR* retstring);
+	[id(73), helpstring("方法GetSpecialWindow")] HRESULT GetSpecialWindow([in] LONG flag, [out,retval] LONG* rethwnd);
+	[id(74), helpstring("方法GetWindow")] HRESULT GetWindow([in] LONG hwnd, [in] LONG flag, [out,retval] LONG* nret);
+	[id(75), helpstring("方法GetWindowClass")] HRESULT GetWindowClass([in] LONG hwnd, [out,retval] BSTR* retstring);
+	[id(76), helpstring("方法GetWindowProcessId")] HRESULT GetWindowProcessId([in] LONG hwnd, [out,retval] LONG* nretpid);
+	[id(77), helpstring("方法GetWindowProcessPath")] HRESULT GetWindowProcessPath([in] LONG hwnd, [out,retval] BSTR* retstring);
+	[id(78), helpstring("方法GetWindowRect")] HRESULT GetWindowRect([in] LONG hwnd, [out] VARIANT* x1, [out] VARIANT* y1, [out] VARIANT* x2, [out] VARIANT* y2, [out,retval] LONG* nret);
+	[id(79), helpstring("方法GetWindowState")] HRESULT GetWindowState([in] LONG hwnd, [in] LONG flag, [out,retval] LONG* rethwnd);
+	[id(80), helpstring("方法GetWindowTitle")] HRESULT GetWindowTitle([in] LONG hwnd, [out,retval] BSTR* rettitle);
+	[id(81), helpstring("方法MoveWindow")] HRESULT MoveWindow([in] LONG hwnd, [in] LONG x, [in] LONG y, [out,retval] LONG* nret);
+	[id(82), helpstring("方法ScreenToClient")] HRESULT ScreenToClient([in] LONG hwnd, [out] VARIANT* x, [out] VARIANT* y,[out,retval] LONG* nret);
+	[id(83), helpstring("方法SendPaste")] HRESULT SendPaste([in] LONG hwnd, [out,retval] LONG* nret);
+	[id(84), helpstring("方法SetClientSize")] HRESULT SetClientSize([in] LONG hwnd, [in] LONG width, [in] LONG hight, [out,retval] LONG* nret);
+	[id(85), helpstring("方法SetWindowState")] HRESULT SetWindowState([in] LONG hwnd, [in] LONG flag, [out,retval] LONG* nret);
+	[id(86), helpstring("方法SetWindowSize")] HRESULT SetWindowSize([in] LONG hwnd, [in] LONG width, [in] LONG height, [out,retval] LONG* nret);
+	[id(87), helpstring("方法SetWindowText")] HRESULT SetWindowText([in] LONG hwnd, [in] BSTR title, [out,retval] LONG* nret);
+	[id(88), helpstring("方法SetWindowTransparent")] HRESULT SetWindowTransparent([in] LONG hwnd, [in] LONG trans, [out,retval] LONG* nret);
+	[id(89), helpstring("方法SetClipboard")] HRESULT SetClipboard([in] BSTR value, [out,retval] LONG* nret);
+	[id(90), helpstring("方法GetClipboard")] HRESULT GetClipboard([out,retval] BSTR* retstring);
+	[id(91), helpstring("方法DoubleToData")] HRESULT DoubleToData([in] DOUBLE value, [out,retval] BSTR* retstring);
+	[id(92), helpstring("方法FloatToData")] HRESULT FloatToData([in] FLOAT value, [out,retval] BSTR* retstring);
+	[id(93), helpstring("方法IntToData")] HRESULT IntToData([in] LONG value, [in] LONG type, [out,retval] BSTR* retstring);
+	[id(94), helpstring("方法StringToData")] HRESULT StringToData([in] BSTR value, [in] LONG type, [out,retval] BSTR* retstring);
+	[id(95), helpstring("方法FindData")] HRESULT FindData([in] LONG hwnd, [in] BSTR addr_range, [in] BSTR data, [out,retval] BSTR* retstring);
+	[id(96), helpstring("方法FindDouble")] HRESULT FindDouble([in] LONG hwnd, [in] BSTR addr_range, [in] DOUBLE double_value_min, [in] DOUBLE double_value_max, [out,retval] BSTR* retstring);
+	[id(97), helpstring("方法FindFloat")] HRESULT FindFloat([in] LONG hwnd, [in] BSTR addr_range, [in] FLOAT float_value_min, [in] FLOAT float_value_max, [out,retval] BSTR* retstring);
+	[id(98), helpstring("方法FindInt")] HRESULT FindInt([in] LONG hwnd, [in] BSTR addr_range, [in] LONG int_value_min, [in] LONG int_value_max, [in] LONG type, [out,retval] BSTR* retstring);
+	[id(99), helpstring("方法FindString")] HRESULT FindString([in] LONG hwnd, [in] BSTR addr_range, [in] BSTR string_value, [in] LONG type, [out,retval] BSTR* retstring);
+	[id(100), helpstring("方法ReadData")] HRESULT ReadData([in] LONG hwnd, [in] BSTR addr, [in] LONG len, [out,retval] BSTR* retstring);
+	//[id(101), helpstring("方法GetModuleBaseAddr")] HRESULT GetModuleBaseAddr([in] LONG hwnd, [in] BSTR module, [out,retval] LONG* retmodeaddr);
+	[id(101), helpstring("方法OcrEx")] HRESULT OcrEx([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR color_format, [in] DOUBLE sim, [out,retval] BSTR* retstring);
+	[id(102), helpstring("方法ReadDouble")] HRESULT ReadDouble([in] LONG hwnd, [in] BSTR addr, [out,retval] DOUBLE* retdouble);
+	[id(103), helpstring("方法ReadFloat")] HRESULT ReadFloat([in] LONG hwnd, [in] BSTR addr, [out,retval] FLOAT* retfloat);
+	[id(104), helpstring("方法ReadInt")] HRESULT ReadInt([in] LONG hwnd, [in] BSTR addr, [in] LONG type, [out,retval] LONG* retint);
+	[id(105), helpstring("方法ReadString")] HRESULT ReadString([in] LONG hwnd, [in] BSTR addr, [in] LONG type, [in] LONG len, [out,retval] BSTR* retstring);
+	[id(106), helpstring("方法TerminateProcess")] HRESULT TerminateProcess([in] LONG pid, [out,retval] LONG* bret);
+	[id(107), helpstring("方法VirtualAllocEx")] HRESULT VirtualAllocEx([in] LONG hwnd, [in] LONG addr, [in] LONG size, [in] LONG type, [out,retval] LONG* bret);
+	[id(108), helpstring("方法VirtualFreeEx")] HRESULT VirtualFreeEx([in] LONG hwnd, [in] LONG addr, [out,retval] LONG* bret);
+	[id(109), helpstring("方法WriteDouble")] HRESULT WriteDouble([in] LONG hwnd, [in] BSTR addr, [in] DOUBLE v, [out,retval] LONG* bret);
+	[id(110), helpstring("方法WriteFloat")] HRESULT WriteFloat([in] LONG hwnd, [in] BSTR addr, [in] FLOAT v, [out,retval] LONG* bret);
+	[id(111), helpstring("方法WriteInt")] HRESULT WriteInt([in] LONG hwnd, [in] BSTR addr, [in] LONG type, [in] LONG v, [out,retval] LONG* bret);
+	[id(112), helpstring("方法WriteString")] HRESULT WriteString([in] LONG hwnd, [in] BSTR addr, [in] LONG type, [in] BSTR v, [out,retval] LONG* bret);
+	[id(113), helpstring("方法WriteData")] HRESULT WriteData([in] LONG hwnd, [in] BSTR addr, [in] BSTR data, [out,retval] LONG* nret);
+	[id(114), helpstring("方法IsBind")] HRESULT IsBind([in] LONG hwnd, [out,retval] LONG* nret);
+	[id(115), helpstring("方法FindFloatEx")] HRESULT FindFloatEx([in] LONG hwnd, [in] BSTR addr_range, [in] FLOAT float_value_min, [in] FLOAT float_value_max, [in] LONG step, [in] LONG multi_thread, [in] LONG mode, [out,retval] BSTR* retstring);
+	[id(116), helpstring("方法FindDoubleEx")] HRESULT FindDoubleEx([in] LONG hwnd, [in] BSTR addr_range, [in] DOUBLE double_value_min, [in] DOUBLE double_value_max, [in] LONG step, [in] LONG multi_thread, [in] LONG mode, [out,retval] BSTR* retstring);
+	[id(117), helpstring("方法FindIntEx")] HRESULT FindIntEx([in] LONG hwnd, [in] BSTR addr_range, [in] LONG int_value_min, [in] LONG int_value_max, [in] LONG type, [in] LONG step, [in] LONG multi_thread, [in] LONG mode, [out,retval] BSTR* retstring);
+	[id(118), helpstring("方法FindDataEx")] HRESULT FindDataEx([in] LONG hwnd, [in] BSTR addr_range, [in] BSTR data, [in] LONG step, [in] LONG multi_thread, [in] LONG mode, [out,retval] BSTR* retstring);
+	[id(119), helpstring("方法FindStringEx")] HRESULT FindStringEx([in] LONG hwnd, [in] BSTR addr_range, [in] BSTR string_value, [in] LONG type, [in] LONG step, [in] LONG multi_thread, [in] LONG mode, [out,retval] BSTR* retstring);
+	[id(120), helpstring("方法GetModuleBaseAddr")] HRESULT GetModuleBaseAddr([in] LONG hwnd, [in] BSTR modulename, [out,retval] LONG* nret);
+	[id(121), helpstring("方法GetCommandLine")] HRESULT GetCommandLine([in] LONG hwnd, [out,retval] BSTR* retstring);
+	//
+	[id(122), helpstring("方法AsmAdd")] HRESULT AsmAdd([in] BSTR asm_ins, [out,retval] LONG* nret);
+	[id(123), helpstring("方法AsmCall")] HRESULT AsmCall([in] LONG hwnd, [in] LONG mode, [out,retval] LONG* nret);
+	[id(124), helpstring("方法AsmClear")] HRESULT AsmClear([out,retval] LONG* nret);
+	[id(125), helpstring("方法AsmCode")] HRESULT AsmCode([in] LONG base_addr, [out,retval] BSTR* retstring);
+	[id(126), helpstring("方法Assemble")] HRESULT Assemble([in] BSTR asm_code, [in] LONG base_addr, [in] LONG is_upper, [out,retval] BSTR* retstring);
+	[id(127), helpstring("方法MatchPicName")] HRESULT MatchPicName([in] BSTR pic_name, [out,retval] BSTR* retstring);
+	[id(128), helpstring("方法SetShowErrorMsg")] HRESULT SetShowErrorMsg([in] LONG show, [out,retval] LONG* nret);
+	[id(129), helpstring("方法Reg")] HRESULT Reg([in] BSTR reg_code, [in] LONG type, [out,retval] LONG* nret);
+	[id(130), helpstring("方法GetMachineCode")] HRESULT GetMachineCode([out,retval] BSTR* retstring);
+	[id(131), helpstring("方法TSGuardProtectToHide")] HRESULT TSGuardProtectToHide([in] LONG enble, [out,retval] LONG* nret);
+	[id(132), helpstring("方法TSGuardProtectToHide2")] HRESULT TSGuardProtectToHide2([in] LONG enable, [out,retval] LONG* nret);
+	[id(133), helpstring("方法TSGuardProtectToNP")] HRESULT TSGuardProtectToNP([in] LONG enable, [out,retval] LONG* nret);
+	[id(134), helpstring("方法Delay")] HRESULT Delay([in] LONG mis, [out,retval] LONG* nret);
+	[id(135), helpstring("方法FindStrS")] HRESULT FindStrS([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR string, [in] BSTR color_format, [in] DOUBLE sim, [out] VARIANT* intX, [out] VARIANT* intY, [out,retval] BSTR* retstring);
+	[id(136), helpstring("方法FindStrFastS")] HRESULT FindStrFastS([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR string, [in] BSTR color_format, [in] DOUBLE sim, [out] VARIANT* intX, [out] VARIANT* intY, [out,retval] BSTR* retstring);
+	[id(137), helpstring("方法FindStrExS")] HRESULT FindStrExS([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR string, [in] BSTR color_format, [in] DOUBLE sim, [out,retval] BSTR* retstring);
+	[id(138), helpstring("方法FindStrFastExS")] HRESULT FindStrFastExS([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR string, [in] BSTR color_format, [in] DOUBLE sim, [out,retval] BSTR* retstring);
+	[id(139), helpstring("方法FindPicS")] HRESULT FindPicS([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR pic_name, [in] BSTR delta_color, [in] DOUBLE sim, [in] LONG dir, [out] VARIANT* intX, [out] VARIANT* intY, [out,retval] BSTR* retstring);
+	[id(140), helpstring("方法FindPicExS")] HRESULT FindPicExS([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [in] BSTR pic_name, [in] BSTR delta_color, [in] DOUBLE sim, [in] LONG dir, [out,retval] BSTR* retstring);
+	[id(141), helpstring("方法SetDictPwd")] HRESULT SetDictPwd([in] BSTR pwd, [out,retval] LONG* nret);
+	[id(142), helpstring("方法SetPicPwd")] HRESULT SetPicPwd([in] BSTR pwd, [out,retval] LONG* nret);
+	[id(143), helpstring("方法LeftDoubleClick")] HRESULT LeftDoubleClick([out,retval] LONG* nret);
+	[id(144), helpstring("方法FreeProcessMemory")] HRESULT FreeProcessMemory([in] LONG hwnd, [out,retval] LONG* nret);
+	[id(145), helpstring("方法TSDXGraphicProtect")] HRESULT TSDXGraphicProtect([in] LONG enable, [out,retval] LONG* nret);
+	[id(146), helpstring("方法TSDXKmProtect")] HRESULT TSDXKmProtect([in] LONG enable, [in] BSTR type, [out,retval] LONG* nret);
+	[id(147), helpstring("方法CheckFontSmooth")] HRESULT CheckFontSmooth([out,retval] LONG* nret);
+	[id(148), helpstring("方法DisableFontSmooth")] HRESULT DisableFontSmooth([out,retval] LONG* nret);
+	[id(149), helpstring("方法GetScreenData")] HRESULT GetScreenData([in] LONG x1, [in] LONG y1, [in] LONG x2, [in] LONG y2, [out,retval] LONG* RetAddr);
+	[id(150), helpstring("方法EnableRealMouse")] HRESULT EnableRealMouse([in] ULONG enable, [in] ULONG mousedelay, [in] ULONG mousestep, [out,retval] ULONG* nret);
+	[id(151), helpstring("方法EnableRealKeypad")] HRESULT EnableRealKeypad([in] ULONG enable, [out,retval] ULONG* nret);
+	[id(152), helpstring("方法MoveToEx")] HRESULT MoveToEx([in] ULONG x, [in] ULONG y, [in] ULONG w, [in] ULONG h, [out,retval] BSTR* retstring);
+	[id(153), helpstring("方法CheckUAC")] HRESULT CheckUAC([out,retval] ULONG* nret);
+	[id(154), helpstring("方法SetUAC")] HRESULT SetUAC([in] ULONG enable,[out,retval] ULONG* nret);
+	[id(155), helpstring("方法WaitKey")] HRESULT WaitKey([in] ULONG vk_code, [in] ULONG time_out, [out,retval] ULONG* nret);
+	[id(156), helpstring("方法FindMultiColor")] HRESULT FindMultiColor([in] ULONG x1, [in] ULONG y1, [in] ULONG x2, [in] ULONG y2, [in] BSTR first_color, [in] BSTR offset_color, [in] DOUBLE sim, [in] ULONG dir, [out] VARIANT* intX, [out] VARIANT* intY, [out,retval] ULONG* nret);
+	[id(157), helpstring("方法FindMultiColorEx")] HRESULT FindMultiColorEx([in] ULONG x1, [in] ULONG y1, [in] ULONG x2, [in] ULONG y2, [in] BSTR first_color, [in] BSTR offset_color, [in] DOUBLE sim, [in] ULONG dir, [out,retval] BSTR* retstring);
+	[id(158), helpstring("方法SetSimMode")] HRESULT SetSimMode([in] ULONG mode, [out,retval] ULONG* nret);
+};
+[
+	uuid(525CF7E5-DB36-491F-A91C-2DB86E67126D),
+	version(1.0),
+	helpstring("TSPlug 1.0 类型库")
+]
+library TSPlugLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(BCE4A484-C3BC-418B-B1F6-69D6987C126B),
+		helpstring("TSPlugInterFace Class")
+	]
+	coclass TSPlugInterFace
+	{
+		[default] interface ITSPlugInterFace;
+	};
+};

@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="TSPlug">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="生成的文件">
+      <UniqueIdentifier>{c38e14f2-5e6c-4411-ad94-959870b1b1e4}</UniqueIdentifier>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="DX后台">
+      <UniqueIdentifier>{5e5d53e4-fcd9-4ac9-8d3d-8eb33274dee6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CreateGif">
+      <UniqueIdentifier>{8b9d1d94-300b-48d0-b72e-5633c319d8bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="窗口API">
+      <UniqueIdentifier>{b05630f9-33ad-442a-ba62-7c5a581c2c47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="内存API">
+      <UniqueIdentifier>{f9a9b1ce-564b-49f8-b4ca-c642bb9c6e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASM">
+      <UniqueIdentifier>{7d90305c-df64-4136-a969-9cd7527db653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kd">
+      <UniqueIdentifier>{1d3f8305-1855-4375-8eaf-ff5f350a5444}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>TSPlug</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>TSPlug</Filter>
+    </ClCompile>
+    <ClCompile Include="TSMyKernel32User32DllFuntion.cpp">
+      <Filter>TSPlug</Filter>
+    </ClCompile>
+    <ClCompile Include="TSPlug.cpp">
+      <Filter>TSPlug</Filter>
+    </ClCompile>
+    <ClCompile Include="TSPlugInterFace.cpp">
+      <Filter>TSPlug</Filter>
+    </ClCompile>
+    <ClCompile Include="TSPlug_i.c">
+      <Filter>生成的文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DXBind.cpp">
+      <Filter>DX后台</Filter>
+    </ClCompile>
+    <ClCompile Include="TSFindPicture.cpp">
+      <Filter>DX后台</Filter>
+    </ClCompile>
+    <ClCompile Include="TSRuntime.cpp">
+      <Filter>DX后台</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateGif\GSKCreateGIF.cpp">
+      <Filter>CreateGif</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateGif\Quantizer.cpp">
+      <Filter>CreateGif</Filter>
+    </ClCompile>
+    <ClCompile Include="TSWindowsAPI.cpp">
+      <Filter>窗口API</Filter>
+    </ClCompile>
+    <ClCompile Include="TSMemoryAPI.cpp">
+      <Filter>内存API</Filter>
+    </ClCompile>
+    <ClCompile Include="ASM\MgAsmBase.cpp">
+      <Filter>ASM</Filter>
+    </ClCompile>
+    <ClCompile Include="ASM\MgAsmCom.cpp">
+      <Filter>ASM</Filter>
+    </ClCompile>
+    <ClCompile Include="ASM\MgDisasmBase.cpp">
+      <Filter>ASM</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMouse\MyKeyboardNamespace.cpp">
+      <Filter>kd</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMouse\MyMouseNamespace.cpp">
+      <Filter>kd</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dllmain.h">
+      <Filter>TSPlug</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>TSPlug</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>TSPlug</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>TSPlug</Filter>
+    </ClInclude>
+    <ClInclude Include="TSPlugInterFace.h">
+      <Filter>TSPlug</Filter>
+    </ClInclude>
+    <ClInclude Include="TSPlug_i.h">
+      <Filter>生成的文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DXBind.h">
+      <Filter>DX后台</Filter>
+    </ClInclude>
+    <ClInclude Include="TSFindPicture.h">
+      <Filter>DX后台</Filter>
+    </ClInclude>
+    <ClInclude Include="TSHookFuntion.h">
+      <Filter>DX后台</Filter>
+    </ClInclude>
+    <ClInclude Include="TSMessage.h">
+      <Filter>DX后台</Filter>
+    </ClInclude>
+    <ClInclude Include="TSRuntime.h">
+      <Filter>DX后台</Filter>
+    </ClInclude>
+    <ClInclude Include="TSVIPHookFuntion.h">
+      <Filter>DX后台</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateGif\GSKCreateGIF.h">
+      <Filter>CreateGif</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateGif\Quantizer.h">
+      <Filter>CreateGif</Filter>
+    </ClInclude>
+    <ClInclude Include="TSWindowsAPI.h">
+      <Filter>窗口API</Filter>
+    </ClInclude>
+    <ClInclude Include="TSMemoryAPI.h">
+      <Filter>内存API</Filter>
+    </ClInclude>
+    <ClInclude Include="ASM\MgAsmCom.h">
+      <Filter>ASM</Filter>
+    </ClInclude>
+    <ClInclude Include="ASM\MgAsmComDef.h">
+      <Filter>ASM</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMouse\MyKeyboardNamespace.h">
+      <Filter>kd</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMouse\MyMouseNamespace.h">
+      <Filter>kd</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TSPlug.def">
+      <Filter>TSPlug</Filter>
+    </None>
+    <None Include="TSPlug.rgs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="TSPlugInterFace.rgs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="imedllhost09.dll" />
+    <None Include="TCProtect_se" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="TSPlug.idl">
+      <Filter>TSPlug</Filter>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TSPlug.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>
